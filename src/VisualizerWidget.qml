@@ -12,7 +12,15 @@ AbstractBackgroundWidget {
     id: root
 
     // Override AbstractBackgroundWidget layout to pin at bottom of the root window
-    parent: QsWindow.window ? QsWindow.window.contentItem : null
+    // Doing this because qs crashes after fullscreen. Might be caused by losing the parent
+    // since the background is offloaded when apps go fullscreen
+    property var activeParent: null
+    onParentChanged: {
+        if (parent !== null) {
+            activeParent = parent
+        }
+    }
+    parent: QsWindow.window ? QsWindow.window.contentItem : activeParent
     x: 0
     y: QsWindow.window ? QsWindow.window.height - height : 0
     width: QsWindow.window ? QsWindow.window.width : 0
