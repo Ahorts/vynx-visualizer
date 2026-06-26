@@ -39,7 +39,7 @@ AbstractBackgroundWidget {
         smoothing: _configs.smoothing ?? 0.2,
         dataAveraging: _configs.dataAveraging ?? 0.3,
         opacity: _configs.opacity ?? 0.8,
-        mono: _configs.mono ?? true,
+        mono: _configs.mono ?? false,
         fillOpacity: _configs.fillOpacity ?? 0.5,
         borderWidth: _configs.borderWidth ?? 3
     })

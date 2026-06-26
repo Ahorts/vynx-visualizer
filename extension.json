@@ -38,6 +38,12 @@
       "icon": "lock",
       "default": true
     },
+    "mono": {
+      "type": "bool",
+      "label": "Mirrored Layout",
+      "icon": "flip",
+      "default": false
+    },
     "dataAveraging": {
       "type": "slider",
       "label": "Data Averaging",
