@@ -1,0 +1,16 @@
+[general]
+mode = normal
+framerate = 60
+autosens = 1
+bars = 50
+
+[output]
+method = raw
+raw_target = /dev/stdout
+data_format = ascii
+ascii_max_range = 1000
+channels = mono
+mono_option = average
+
+[smoothing]
+noise_reduction = 20
