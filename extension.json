@@ -1,0 +1,112 @@
+{
+  "name": "Visualizer",
+  "description": "Audio visualizer widget that runs cava in the background and renders spectrum bars on the desktop background.",
+  "version": "0.1.0",
+  "author": "Ahorts",
+  "icon": "equalizer",
+  "configDefaults": {
+    "hideWhenFullscreen": true,
+    "hideWhenCovered": true,
+    "showWhenLocked": true,
+    "mono": false,
+    "dataAveraging": 0.2,
+    "height": 500,
+    "targetBarWidth": 20,
+    "barSpacing": 4,
+    "borderWidth": 3,
+    "opacity": 0.8,
+    "smoothing": 0.06,
+    "fillOpacity": 0.4,
+    "barRounding": 0.2
+  },
+  "configSchema": {
+    "dataAveraging": {
+      "type": "slider",
+      "label": "Data Averaging",
+      "icon": "waves",
+      "default": 0.2,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "height": {
+      "type": "int",
+      "label": "Max Height",
+      "icon": "height",
+      "default": 500,
+      "min": 60,
+      "max": 1080
+    },
+    "targetBarWidth": {
+      "type": "int",
+      "label": "Bar Width",
+      "icon": "view_week",
+      "default": 20,
+      "min": 1,
+      "max": 200
+    },
+    "barSpacing": {
+      "type": "int",
+      "label": "Bar Gap",
+      "icon": "space_bar",
+      "default": 4,
+      "min": 0,
+      "max": 100
+    },
+    "borderWidth": {
+      "type": "int",
+      "label": "Border Width",
+      "icon": "line_weight",
+      "default": 3,
+      "min": 0,
+      "max": 20
+    },
+    "opacity": {
+      "type": "slider",
+      "label": "Master Opacity",
+      "icon": "opacity",
+      "default": 0.8,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "smoothing": {
+      "type": "slider",
+      "label": "Smoothing",
+      "icon": "show_chart",
+      "default": 0.06,
+      "min": 0.0,
+      "max": 0.20
+    },
+    "fillOpacity": {
+      "type": "slider",
+      "label": "Border Opacity",
+      "icon": "blur_on",
+      "default": 0.4,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "barRounding": {
+      "type": "slider",
+      "label": "Bar Roundness",
+      "icon": "rounded_corner",
+      "default": 0.2,
+      "min": 0.0,
+      "max": 0.50
+    }
+  },
+  "contributes": {
+    "services": [
+      {
+        "id": "visualizerService",
+        "qml": "src/CavaService.qml"
+      }
+    ],
+    "backgroundWidgets": [
+      {
+        "identifier": "vynxVisualizer",
+        "title": "Visualizer",
+        "icon": "equalizer",
+        "component": "src/VisualizerWidget.qml"
+      }
+    ]
+  }
+}
