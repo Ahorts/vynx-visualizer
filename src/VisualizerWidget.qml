@@ -7,6 +7,7 @@ import qs.modules.common.widgets
 import qs.modules.ii.background.widgets
 import qs.modules.common.models.hyprland
 import Quickshell
+import Quickshell.Hyprland
 
 AbstractBackgroundWidget {
     id: root
@@ -27,8 +28,16 @@ AbstractBackgroundWidget {
     draggable: false
 
     property string extensionId: ""
-    readonly property bool isCovered: QsWindow.window ? (QsWindow.window.isCovered ?? false) : false
-    readonly property bool hasFullscreen: QsWindow.window ? (QsWindow.window.hasFullscreen ?? false) : false
+    readonly property var monitor: QsWindow.window ? Hyprland.monitorFor(QsWindow.window.screen) : null
+    readonly property int activeWorkspaceId: monitor?.activeWorkspace?.id ?? -1
+    readonly property bool isCovered: {
+        if (activeWorkspaceId === -1 || !monitor) return false;
+        return HyprlandData.windowList.some(w => w.workspace?.id === activeWorkspaceId && w.monitor === monitor.id && !w.floating);
+    }
+    readonly property bool hasFullscreen: {
+        if (activeWorkspaceId === -1 || !monitor) return false;
+        return HyprlandData.windowList.some(w => w.workspace?.id === activeWorkspaceId && w.monitor === monitor.id && (w.fullscreen || w.wayland?.fullscreen));
+    }
     readonly property var _configs: ExtensionManager.extensionConfigs[extensionId] || {}
 
     readonly property var config: ({
