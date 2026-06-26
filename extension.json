@@ -20,6 +20,24 @@
     "barRounding": 0.2
   },
   "configSchema": {
+    "hideWhenFullscreen": {
+      "type": "bool",
+      "label": "Hide when Fullscreen",
+      "icon": "fullscreen",
+      "default": true
+    },
+    "hideWhenCovered": {
+      "type": "bool",
+      "label": "Hide when Covered",
+      "icon": "layers_clear",
+      "default": true
+    },
+    "showWhenLocked": {
+      "type": "bool",
+      "label": "Show when Locked",
+      "icon": "lock",
+      "default": true
+    },
     "dataAveraging": {
       "type": "slider",
       "label": "Data Averaging",
